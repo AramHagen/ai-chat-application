@@ -1,0 +1,28 @@
+<!-- Main Chat Layout -->
+<div class="flex h-screen w-screen bg-gray-50">
+  <!-- Left Sidebar -->
+  <div class="w-64 border-r border-gray-200 bg-white flex flex-col">
+    <app-sidebar />
+  </div>
+
+  <!-- Main Chat Area -->
+  <div class="flex-1 flex flex-col bg-white">
+    <!-- Chat Header -->
+    <div class="border-b border-gray-200 p-4 bg-white">
+      <app-chat-header />
+    </div>
+
+    <!-- Messages Area -->
+    <div class="flex-1 overflow-y-auto">
+      <app-message-list />
+    </div>
+
+    <!-- Chat Input -->
+    <div class="p-4">
+      <app-chat-input (messageSent)="onMessageSent($event)" />
+    </div>
+  </div>
+
+  <!-- Right Subscribe Badge -->
+  <app-subscribe-badge />
+</div>

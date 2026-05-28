@@ -41,16 +41,16 @@ The goal of this project is to learn how to build a full-stack application where
 
 **API Routes:**
 
-| Method   | Endpoint                     | Description                                  | Auth Required |
-| -------- | ---------------------------- | -------------------------------------------- | ------------- |
-| `POST`   | `/api/auth/signup`           | Register a new user                          | No            |
-| `POST`   | `/api/auth/signin`           | Authenticate user, return JWT                | No            |
-| `GET`    | `/api/chats`                 | Get all chat sessions for the logged-in user | Yes           |
-| `POST`   | `/api/chats`                 | Create a new chat session                    | Yes           |
-| `DELETE` | `/api/chats/:id`             | Delete a chat session by ID                  | Yes           |
-| `GET`    | `/api/chats/:id/messages`    | Get all messages in a chat                   | Yes           |
-| `POST`   | `/api/chats/:id/messages`    | Send a message and receive AI response       | Yes           |
-| `POST`   | `/api/messages/:id/feedback` | Submit thumbs up/down feedback on a message  | Yes           |
+| Method   | Endpoint                            | Description                                                                  | Auth Required |
+| -------- | ----------------------------------- | ---------------------------------------------------------------------------- | ------------- |
+| `POST`   | `/api/auth/signup`                  | Register a new user                                                          | No            |
+| `POST`   | `/api/auth/signin`                  | Authenticate user, return JWT                                                | No            |
+| `GET`    | `/api/chats`                        | Get all chat sessions for the logged-in user                                 | Yes           |
+| `DELETE` | `/api/chats/:id`                    | Delete a chat session by ID                                                  | Yes           |
+| `POST`   | `/api/chats/messages`               | Send first message — auto-creates the chat and uses message content as title | Yes           |
+| `GET`    | `/api/chats/:chatId/messages`       | Get all messages in an existing chat                                         | Yes           |
+| `POST`   | `/api/chats/:chatId/messages`       | Send a message to an existing chat and receive AI response                   | Yes           |
+| `POST`   | `/api/messages/:messageId/feedback` | Submit thumbs up/down feedback on a message                                  | Yes           |
 
 **Data Models (MongoDB):**
 
