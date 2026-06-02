@@ -20,12 +20,12 @@
 
     <!-- Messages Area -->
     <div class="flex-1 overflow-y-auto">
-      <app-message-list [messages]="messages()" (feedbackGiven)="onFeedback($event)" />
+      <app-message-list [messages]="messages()" [loading]="loading()" (feedbackGiven)="onFeedback($event)" />
     </div>
 
     <!-- Chat Input -->
     <div class="p-4">
-      <app-chat-input (messageSent)="onMessageSent($event)" />
+      <app-chat-input [loading]="loading()" (messageSent)="onMessageSent($event)" />
     </div>
   </div>
 </div>

@@ -14,6 +14,7 @@ import { MessageItemComponent } from '../message-item/message-item.component';
 })
 export class MessageListComponent {
   messages = input<Message[]>([]);
+  loading = input<boolean>(false);
   feedbackGiven = output<{ messageId: string; feedback: 'positive' | 'negative' }>();
 
   trackByMessageId(index: number, message: Message): string {

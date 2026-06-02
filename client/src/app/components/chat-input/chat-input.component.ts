@@ -1,4 +1,4 @@
-import { Component, signal, output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChatInputComponent {
+  loading = input<boolean>(false);
   message = signal('');
   showEmojiPicker = signal(false);
   emojis = ['😀', '😂', '😍', '👍', '🙏', '🔥', '🎉', '💡'];
@@ -20,7 +21,7 @@ export class ChatInputComponent {
   }
 
   onSend() {
-    if (this.message().trim()) {
+    if (this.message().trim() && !this.loading()) {
       this.messageSent.emit(this.message());
       this.message.set('');
       this.showEmojiPicker.set(false);
