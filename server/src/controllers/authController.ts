@@ -22,11 +22,9 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     const user = await User.create({ name, email, passwordHash });
 
     // Generate JWT
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env['JWT_SECRET'] as string,
-      { expiresIn: '7d' }
-    );
+    const token = jwt.sign({ userId: user._id }, process.env['JWT_SECRET'] as string, {
+      expiresIn: '7d',
+    });
 
     res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {
@@ -55,11 +53,9 @@ export const signin = async (req: Request, res: Response): Promise<void> => {
     }
 
     // Generate JWT
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env['JWT_SECRET'] as string,
-      { expiresIn: '7d' }
-    );
+    const token = jwt.sign({ userId: user._id }, process.env['JWT_SECRET'] as string, {
+      expiresIn: '7d',
+    });
 
     res.status(200).json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {

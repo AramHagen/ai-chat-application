@@ -1,14 +1,13 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import Chat from '../models/Chat.js';
 import { AuthRequest } from '../middleware/auth.js';
-
 
 // GET /api/chats
 export const getChats = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const chats = await Chat.find({ userId: req.userId }).sort({ createdAt: -1 });
     res.json(chats);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -22,7 +21,7 @@ export const deleteChat = async (req: AuthRequest, res: Response): Promise<void>
       return;
     }
     res.json({ message: 'Chat deleted successfully' });
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 };

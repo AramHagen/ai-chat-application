@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
 import Message from '../models/Message.js';
 import Chat from '../models/Chat.js';
 import groq from '../config/groq.js';
@@ -10,7 +10,7 @@ export const getMessages = async (req: AuthRequest, res: Response): Promise<void
     const chatId = req.params['chatId'] as string;
     const messages = await Message.find({ chatId }).sort({ createdAt: 1 });
     res.json(messages);
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 };

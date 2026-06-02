@@ -1,0 +1,70 @@
+<!-- Sidebar Header -->
+<div class="bg-white border-b border-gray-200 p-4">
+  <h1 class="text-lg font-bold text-gray-900 mb-4">CHAT A.I+</h1>
+  <button
+    (click)="onNewChat()"
+    class="w-full bg-blue-600 text-white rounded-full py-2 px-4 mb-3 flex items-center justify-center gap-2 hover:bg-blue-700 transition-colors"
+  >
+    <span>+</span>
+    <span>New chat</span>
+  </button>
+</div>
+
+<!-- Chats List -->
+<div class="flex-1 overflow-y-auto">
+  <div class="p-4">
+    <h3 class="text-sm font-semibold text-gray-700 mb-3">Your conversations</h3>
+
+    @for (chat of chats(); track chat._id) {
+      <button
+        (click)="onSelectChat(chat)"
+        [class.bg-gray-100]="selectedChatId() === chat._id"
+        class="group w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors mb-2 flex items-start justify-between"
+      >
+        <div class="flex items-start gap-3 flex-1 min-w-0">
+          <svg
+            class="w-4 h-4 text-gray-400 shrink-0 mt-0.5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" />
+          </svg>
+          <span class="text-sm text-gray-700 truncate group-hover:text-gray-900">{{
+            chat.title
+          }}</span>
+        </div>
+        <button
+          (click)="onDeleteChat($event, chat._id)"
+          class="ml-2 cursor-pointer shrink-0 p-1 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded opacity-0 group-hover:opacity-100 transition-all"
+          title="Delete conversation"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </button>
+    }
+
+    @if (chats().length === 0) {
+      <p class="text-sm text-gray-400 text-center py-4">No conversations yet</p>
+    }
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="border-t border-gray-200 p-4 space-y-2">
+  <div
+    class="w-full flex items-center gap-3 rounded-full border border-gray-200 bg-white px-3 py-2 text-gray-900"
+  >
+    <div
+      class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white"
+    >
+      {{ userInitial() }}
+    </div>
+    <span class="min-w-0 truncate text-sm font-medium">{{ displayUserName() }}</span>
+  </div>
+</div>

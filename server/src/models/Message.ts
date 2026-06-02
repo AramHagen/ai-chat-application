@@ -15,7 +15,7 @@ const MessageSchema = new Schema<IMessage>(
     content: { type: String, required: true },
     feedback: { type: String, enum: ['positive', 'negative', null], default: null },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model<IMessage>('Message', MessageSchema);

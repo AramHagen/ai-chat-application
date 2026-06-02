@@ -1,0 +1,62 @@
+<!-- Chat Input Area -->
+<div class="flex gap-3 items-center">
+  <!-- Input Field -->
+  <div class="flex-1 relative flex items-center">
+    <textarea
+      [value]="message()"
+      (input)="onInputChange($event)"
+      (keydown)="onKeyPress($event)"
+      placeholder="What's in your mind?"
+      class="w-full px-4 py-3 rounded-lg border border-gray-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 resize-none"
+      rows="1"
+    ></textarea>
+
+    @if (showEmojiPicker()) {
+      <div
+        class="absolute bottom-full right-0 mb-2 grid grid-cols-4 gap-1 rounded-lg border border-gray-200 bg-white p-2 shadow-lg"
+      >
+        @for (emoji of emojis; track emoji) {
+          <button
+            type="button"
+            (click)="onEmojiSelect(emoji)"
+            class="h-9 w-9 rounded-md text-lg hover:bg-gray-100 transition-colors"
+          >
+            {{ emoji }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex gap-2">
+    <!-- Emoji Button -->
+    <button
+      type="button"
+      (click)="onEmojiButtonClick()"
+      aria-label="Open emoji picker"
+      class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors flex-shrink-0"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2zm-5.5 3a3.5 3.5 0 117 0 3.5 3.5 0 01-7 0z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </button>
+
+    <!-- Send Button -->
+    <button
+      type="button"
+      (click)="onSend()"
+      class="p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex-shrink-0"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5.951-1.429 5.951 1.429a1 1 0 001.169-1.409l-7-14z"
+        />
+      </svg>
+    </button>
+  </div>
+</div>

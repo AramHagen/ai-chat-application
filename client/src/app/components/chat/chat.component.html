@@ -1,0 +1,31 @@
+<div class="flex h-screen w-screen bg-gray-50">
+  <!-- Left Sidebar -->
+  <div class="w-64 border-r border-gray-200 bg-white flex flex-col">
+    <app-sidebar
+      [chats]="chats()"
+      [selectedChatId]="selectedChat()?._id ?? null"
+      [userName]="currentUser()?.name ?? 'User'"
+      (newChat)="onNewChat()"
+      (selectChat)="onSelectChat($event)"
+      (deleteChat)="onDeleteChat($event)"
+    />
+  </div>
+
+  <!-- Main Chat Area -->
+  <div class="flex-1 flex flex-col bg-white">
+    <!-- Chat Header -->
+    <div class="border-b border-gray-200 p-4 bg-white">
+      <app-chat-header [title]="selectedChat()?.title ?? 'Chat with AI'" />
+    </div>
+
+    <!-- Messages Area -->
+    <div class="flex-1 overflow-y-auto">
+      <app-message-list [messages]="messages()" (feedbackGiven)="onFeedback($event)" />
+    </div>
+
+    <!-- Chat Input -->
+    <div class="p-4">
+      <app-chat-input (messageSent)="onMessageSent($event)" />
+    </div>
+  </div>
+</div>

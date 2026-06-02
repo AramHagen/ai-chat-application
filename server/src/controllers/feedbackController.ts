@@ -14,11 +14,7 @@ export const submitFeedback = async (req: AuthRequest, res: Response): Promise<v
       return;
     }
 
-    const message = await Message.findByIdAndUpdate(
-      messageId,
-      { feedback },
-      { new: true }
-    );
+    const message = await Message.findByIdAndUpdate(messageId, { feedback }, { new: true });
 
     if (!message) {
       res.status(404).json({ message: 'Message not found' });
@@ -26,7 +22,7 @@ export const submitFeedback = async (req: AuthRequest, res: Response): Promise<v
     }
 
     res.json({ message: 'Feedback submitted successfully', data: message });
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 };
