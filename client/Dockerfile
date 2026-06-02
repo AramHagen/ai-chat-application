@@ -22,4 +22,4 @@ COPY --from=builder /app/dist/chat-frontend/browser ./dist
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "serve -s dist -l tcp://0.0.0.0:${PORT:-3000}"]
+CMD ["serve", "-s", "dist", "-l", "3000"]
