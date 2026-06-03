@@ -1,13 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChatHeaderComponent } from './chat-header.component';
+import { AuthFacadeService } from '../../services/auth/auth-facade.service';
 
 describe('ChatHeaderComponent', () => {
   let component: ChatHeaderComponent;
   let fixture: ComponentFixture<ChatHeaderComponent>;
+  let authFacadeMock: jest.Mocked<Pick<AuthFacadeService, 'logout'>>;
 
   beforeEach(async () => {
+    authFacadeMock = { logout: jest.fn() };
+
     await TestBed.configureTestingModule({
       imports: [ChatHeaderComponent],
+      providers: [{ provide: AuthFacadeService, useValue: authFacadeMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ChatHeaderComponent);
@@ -30,12 +35,9 @@ describe('ChatHeaderComponent', () => {
     expect(image.alt).toBe('Project Chat');
   });
 
-  it('handles settings clicks', () => {
-    const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+  it('calls logout on sign out click', () => {
+    component.onSignOut();
 
-    component.onSettings();
-
-    expect(consoleSpy).toHaveBeenCalledWith('Settings clicked');
-    consoleSpy.mockRestore();
+    expect(authFacadeMock.logout).toHaveBeenCalled();
   });
 });
