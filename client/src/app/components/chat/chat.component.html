@@ -20,7 +20,11 @@
 
     <!-- Messages Area -->
     <div class="flex-1 overflow-y-auto">
-      <app-message-list [messages]="messages()" [loading]="loading()" (feedbackGiven)="onFeedback($event)" />
+      <app-message-list
+        [messages]="messages()"
+        [loading]="loading()"
+        (feedbackGiven)="onFeedback($event)"
+      />
     </div>
 
     <!-- Chat Input -->
