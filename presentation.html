@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat Application — Presentation Plan</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: #f4f6f9;
+        color: #1a1a2e;
+        padding: 40px 20px;
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+
+      /* Cover */
+      .cover {
+        background: linear-gradient(135deg, #1e3a5f, #2563eb);
+        color: white;
+        border-radius: 16px;
+        padding: 56px 48px;
+        margin-bottom: 32px;
+        text-align: center;
+      }
+
+      .cover .tag {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 4px 16px;
+        font-size: 13px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .cover h1 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+
+      .cover p {
+        font-size: 16px;
+        opacity: 0.85;
+        margin-bottom: 8px;
+      }
+
+      .cover .url {
+        display: inline-block;
+        margin-top: 16px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        padding: 8px 20px;
+        font-size: 14px;
+        font-family: monospace;
+      }
+
+      /* Timeline bar */
+      .timeline {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+      }
+
+      .timeline-item {
+        flex: 1;
+        min-width: 120px;
+        background: white;
+        border-radius: 10px;
+        padding: 14px 12px;
+        text-align: center;
+        border-top: 4px solid #2563eb;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      }
+
+      .timeline-item .num {
+        font-size: 20px;
+        font-weight: 700;
+        color: #2563eb;
+      }
+
+      .timeline-item .label {
+        font-size: 11px;
+        color: #666;
+        margin-top: 2px;
+      }
+
+      .timeline-item .time {
+        font-size: 12px;
+        color: #999;
+        margin-top:4px;
+      }
+
+      /* Section card */
+      .section {
+        background: white;
+        border-radius: 14px;
+        padding: 32px 36px;
+        margin-bottom: 24px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        page-break-inside: avoid;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+
+      .section-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #2563eb;
+        color: white;
+        font-size: 18px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1a1a2e;
+      }
+
+      .section-time {
+        margin-left: auto;
+        background: #eff6ff;
+        color: #2563eb;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 12px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+
+      .section p {
+        color: #444;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 16px;
+      }
+
+      /* Code block */
+      .code-block {
+        background: #1e293b;
+        color: #e2e8f0;
+        border-radius: 10px;
+        padding: 20px 24px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.8;
+        margin: 16px 0;
+        overflow-x: auto;
+      }
+
+      .code-block .comment { color: #94a3b8; }
+      .code-block .key { color: #7dd3fc; }
+      .code-block .value { color: #86efac; }
+
+      /* Key points */
+      .key-points {
+        margin-top: 16px;
+      }
+
+      .key-points h4 {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #888;
+        margin-bottom: 10px;
+      }
+
+      .key-point {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .key-point .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #2563eb;
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .key-point p {
+        margin: 0;
+        font-size: 14px;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .key-point p strong {
+        color: #1a1a2e;
+      }
+
+      /* Tech stack chips */
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .chip {
+        background: #eff6ff;
+        color: #1d4ed8;
+        border: 1px solid #bfdbfe;
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+
+      /* CI table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        font-size: 14px;
+      }
+
+      th {
+        background: #f1f5f9;
+        padding: 10px 16px;
+        text-align: left;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #64748b;
+        border-bottom: 2px solid #e2e8f0;
+      }
+
+      td {
+        padding: 10px 16px;
+        border-bottom: 1px solid #f1f5f9;
+        color: #374151;
+      }
+
+      td code {
+        background: #f1f5f9;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 12px;
+        color: #1d4ed8;
+      }
+
+      /* Demo steps */
+      .demo-steps {
+        counter-reset: step;
+        list-style: none;
+        padding: 0;
+      }
+
+      .demo-steps li {
+        counter-increment: step;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 10px 0;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 14px;
+        color: #374151;
+      }
+
+      .demo-steps li:last-child {
+        border-bottom: none;
+      }
+
+      .demo-steps li::before {
+        content: counter(step);
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #2563eb;
+        color: white;
+        font-size: 13px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        color: #aaa;
+        font-size: 13px;
+        margin-top: 32px;
+        padding-bottom: 20px;
+      }
+
+      /* Print */
+      @media print {
+        body { background: white; padding: 0; }
+        .section { box-shadow: none; border: 1px solid #e5e7eb; }
+        .cover { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .section-number { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+
+      <!-- Cover -->
+      <div class="cover">
+        <div class="tag">Class Presentation</div>
+        <h1>AI Chat Application</h1>
+        <p>A full-stack chat app powered by AI — built with Angular, Node.js, and MongoDB</p>
+        <p>Deployed live on Railway</p>
+        <div class="url">lovely-adventure-production-7fb8.up.railway.app</div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="num">1</div>
+          <div class="label">Introduction</div>
+          <div class="time">1–2 min</div>
+        </div>
+        <div class="timeline-item">
+          <div class="num">2</div>
+          <div class="label">Structure</div>
+          <div class="time">1 min</div>
+        </div>
+        <div class="timeline-item">
+          <div class="num">3</div>
+          <div class="label">Server</div>
+          <div class="time">4–5 min</div>
+        </div>
+        <div class="timeline-item">
+          <div class="num">4</div>
+          <div class="label">Client</div>
+          <div class="time">4–5 min</div>
+        </div>
+        <div class="timeline-item">
+          <div class="num">5</div>
+          <div class="label">CI Pipeline</div>
+          <div class="time">1–2 min</div>
+        </div>
+        <div class="timeline-item">
+          <div class="num">6</div>
+          <div class="label">Deployment</div>
+          <div class="time">1–2 min</div>
+        </div>
+        <div class="timeline-item">
+          <div class="num">7</div>
+          <div class="label">Live Demo</div>
+          <div class="time">2–3 min</div>
+        </div>
+      </div>
+
+      <!-- Section 1 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">1</div>
+          <div class="section-title">Introduction</div>
+          <div class="section-time">1–2 min</div>
+        </div>
+        <p>A full-stack AI chat application where users can sign up, sign in, and have real-time conversations with an AI assistant — similar to ChatGPT or Claude.</p>
+        <div class="key-points">
+          <h4>Key talking points</h4>
+          <div class="key-point"><div class="dot"></div><p>Both frontend and backend are written in <strong>TypeScript</strong> — gives type safety, better tooling, and catches errors at compile time instead of runtime</p></div>
+          <div class="key-point"><div class="dot"></div><p>Two separate projects: <strong>server</strong> (API) and <strong>client</strong> (UI), deployed independently</p></div>
+          <div class="key-point"><div class="dot"></div><p>The AI responses are powered by <strong>Groq</strong> — a fast open-source LLM API</p></div>
+        </div>
+      </div>
+
+      <!-- Section 2 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">2</div>
+          <div class="section-title">Project Structure Overview</div>
+          <div class="section-time">1 min</div>
+        </div>
+        <div class="code-block">
+ai-chat-application/<br>
+├── <span class="key">server/</span>   <span class="comment">← Node.js + Express API</span><br>
+└── <span class="key">client/</span>   <span class="comment">← Angular frontend</span>
+        </div>
+        <p>Two separate projects, each with their own <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:13px">package.json</code>, TypeScript config, linting, formatting, and test suite. They communicate over HTTP.</p>
+      </div>
+
+      <!-- Section 3 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">3</div>
+          <div class="section-title">Server — Backend</div>
+          <div class="section-time">4–5 min</div>
+        </div>
+        <div class="chips">
+          <span class="chip">Node.js</span>
+          <span class="chip">Express</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">MongoDB</span>
+          <span class="chip">Mongoose</span>
+          <span class="chip">Groq AI</span>
+          <span class="chip">JWT</span>
+          <span class="chip">bcrypt</span>
+        </div>
+        <div class="code-block">
+server/src/<br>
+├── <span class="key">index.ts</span>              <span class="comment">← entry point, starts the server</span><br>
+├── <span class="key">app.ts</span>                <span class="comment">← Express setup, middleware, routes</span><br>
+├── config/<br>
+│   ├── <span class="key">db.ts</span>             <span class="comment">← connects to MongoDB Atlas</span><br>
+│   └── <span class="key">groq.ts</span>           <span class="comment">← sets up Groq AI client</span><br>
+├── models/<br>
+│   ├── <span class="key">User.ts</span>           <span class="comment">← name, email, passwordHash</span><br>
+│   ├── <span class="key">Chat.ts</span>           <span class="comment">← chat session belonging to a user</span><br>
+│   └── <span class="key">Message.ts</span>        <span class="comment">← role (user/assistant) + content</span><br>
+├── controllers/<br>
+│   ├── <span class="key">authController.ts</span>     <span class="comment">← signup & signin logic</span><br>
+│   ├── <span class="key">chatController.ts</span>     <span class="comment">← create, list, delete chats</span><br>
+│   ├── <span class="key">messageController.ts</span>  <span class="comment">← send → Groq AI → save response</span><br>
+│   └── <span class="key">feedbackController.ts</span> <span class="comment">← thumbs up/down on messages</span><br>
+├── routes/               <span class="comment">← defines API endpoints</span><br>
+└── middleware/<br>
+    └── <span class="key">auth.ts</span>           <span class="comment">← verifies JWT, protects routes</span>
+        </div>
+        <div class="key-points">
+          <h4>Key talking points</h4>
+          <div class="key-point"><div class="dot"></div><p><strong>MVC pattern</strong> — routes → controllers → models, each layer has one responsibility</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>JWT authentication</strong> — after login a token is issued; every protected request must include it in the header</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>bcrypt</strong> — passwords are hashed before saving, never stored as plain text</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>Groq AI</strong> — message is sent to the AI, response is saved to MongoDB and returned to the client</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>Unit tests</strong> in <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:12px">__tests__/</code> covering controllers and middleware</p></div>
+        </div>
+      </div>
+
+      <!-- Section 4 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">4</div>
+          <div class="section-title">Client — Frontend</div>
+          <div class="section-time">4–5 min</div>
+        </div>
+        <div class="chips">
+          <span class="chip">Angular 21</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Tailwind CSS</span>
+          <span class="chip">Angular Signals</span>
+          <span class="chip">RxJS</span>
+        </div>
+        <div class="code-block">
+client/src/app/<br>
+├── <span class="key">app.routes.ts</span>             <span class="comment">← /signin, /signup, /chat</span><br>
+├── models/                   <span class="comment">← TypeScript interfaces: User, Chat, Message</span><br>
+├── guards/<br>
+│   └── <span class="key">auth-guard.ts</span>         <span class="comment">← redirects to /signin if not logged in</span><br>
+├── interceptors/<br>
+│   └── <span class="key">auth-interceptor.ts</span>   <span class="comment">← auto-attaches JWT to every request</span><br>
+├── services/<br>
+│   ├── auth/<br>
+│   │   ├── <span class="key">auth-api.service.ts</span>    <span class="comment">← HTTP calls (signup, signin)</span><br>
+│   │   ├── <span class="key">auth-store.service.ts</span>  <span class="comment">← holds user/token + localStorage</span><br>
+│   │   └── <span class="key">auth-facade.service.ts</span> <span class="comment">← single interface components use</span><br>
+│   └── chat/                 <span class="comment">← same 3-layer pattern</span><br>
+└── components/<br>
+    ├── signin / signup        <span class="comment">← authentication pages</span><br>
+    ├── <span class="key">chat/</span>                  <span class="comment">← main container, connects everything</span><br>
+    ├── <span class="key">sidebar/</span>               <span class="comment">← conversation history list</span><br>
+    ├── <span class="key">chat-header/</span>           <span class="comment">← title + sign out button</span><br>
+    ├── <span class="key">message-list/</span>          <span class="comment">← messages + typing indicator</span><br>
+    ├── <span class="key">message-item/</span>          <span class="comment">← single message bubble</span><br>
+    └── <span class="key">chat-input/</span>            <span class="comment">← textarea + send button with spinner</span>
+        </div>
+        <div class="key-points">
+          <h4>Key talking points</h4>
+          <div class="key-point"><div class="dot"></div><p><strong>Angular Signals</strong> — modern reactive state, components update automatically when data changes</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>3-layer service pattern</strong> (API → Store → Facade) — HTTP logic, state, and UI concerns are fully separated</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>Auth guard</strong> — route-level protection, unauthenticated users are redirected automatically</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>HTTP interceptor</strong> — JWT token is attached to every outgoing request automatically</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>Loading state UX</strong> — send button shows a spinner and textarea is disabled while waiting for AI response; animated typing indicator shown in message list</p></div>
+        </div>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">5</div>
+          <div class="section-title">CI Pipeline — GitHub Actions</div>
+          <div class="section-time">1–2 min</div>
+        </div>
+        <p>A CI (Continuous Integration) pipeline in <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:13px">.github/workflows/ci.yml</code> runs automatically on every push to <strong>main</strong> or <strong>development</strong>. It runs two parallel jobs — one for the server and one for the client — each with three steps:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Command</th>
+              <th>What it checks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lint</td>
+              <td><code>npm run lint</code></td>
+              <td>ESLint — catches bad code patterns</td>
+            </tr>
+            <tr>
+              <td>Format</td>
+              <td><code>npm run format:check</code></td>
+              <td>Prettier — ensures consistent code style</td>
+            </tr>
+            <tr>
+              <td>Unit Tests</td>
+              <td><code>npm test</code></td>
+              <td>Jest — verifies all tests pass</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="key-points">
+          <h4>Key talking points</h4>
+          <div class="key-point"><div class="dot"></div><p>If any step fails, GitHub shows a red ✗ on the commit — you can't accidentally merge broken code</p></div>
+          <div class="key-point"><div class="dot"></div><p>This is standard practice in professional software teams</p></div>
+        </div>
+      </div>
+
+      <!-- Section 6 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">6</div>
+          <div class="section-title">Deployment</div>
+          <div class="section-time">1–2 min</div>
+        </div>
+        <div class="key-points">
+          <div class="key-point"><div class="dot"></div><p><strong>Railway</strong> — hosts both the frontend and backend as two separate services, auto-deploys on every push to <strong>main</strong></p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>MongoDB Atlas</strong> — cloud database, connected via the <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:12px">MONGO_URI</code> environment variable</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>Secrets</strong> (API keys, JWT secret, DB password) are stored in Railway Variables — never committed to git</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>Frontend</strong> — Angular app is compiled to static files and served with <code style="background:#f1f5f9;padding:2px 6px;border-radius:4px;font-size:12px">serve</code> inside a Docker container</p></div>
+          <div class="key-point"><div class="dot"></div><p><strong>Backend</strong> — runs as a Node.js process, compiled from TypeScript to JavaScript before starting</p></div>
+        </div>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-number">7</div>
+          <div class="section-title">Live Demo</div>
+          <div class="section-time">2–3 min</div>
+        </div>
+        <p>Walk through the live app at <strong>lovely-adventure-production-7fb8.up.railway.app</strong></p>
+        <ol class="demo-steps">
+          <li>Sign up with a new account</li>
+          <li>Sign in with those credentials</li>
+          <li>Send a message — show the typing indicator (3 bouncing dots) while waiting</li>
+          <li>Receive the AI response</li>
+          <li>Click thumbs up or thumbs down on the response</li>
+          <li>Create a new chat from the sidebar</li>
+          <li>Click the sign out button in the top right</li>
+        </ol>
+      </div>
+
+      <div class="footer">
+        Total estimated time: 14–18 minutes &nbsp;·&nbsp; AI Chat Application &nbsp;·&nbsp; 2026
+      </div>
+
+    </div>
+  </body>
+</html>
